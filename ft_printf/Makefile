@@ -10,7 +10,6 @@ SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 
 RM			=	rm -f
-AR			=	ar rc
 LIBC		=	ar rc
 LIBR		= 	ranlib
 

@@ -15,7 +15,6 @@ SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 RM			=	rm -rf
-AR			=	ar rc
 LIBC		=	ar rc
 LIBR		= 	ranlib
 
