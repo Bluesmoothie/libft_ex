@@ -6,11 +6,11 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:23:06 by ygille            #+#    #+#             */
-/*   Updated: 2024/11/27 11:19:37 by ygille           ###   ########.fr       */
+/*   Updated: 2024/11/27 14:06:32 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include <get_next_line.h>
 
 char	*get_next_line(int fd)
 {
