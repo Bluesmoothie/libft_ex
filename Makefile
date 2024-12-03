@@ -20,7 +20,10 @@ $(NAME)	: $(LIBFTPRINTF) $(LIBGNL) $(LIBFT)
 		cp $(LIBFTPRINTF) .
 		cp $(LIBGNL) .
 		cp $(LIBFT) .
-		$(LIBC) $(NAME) $(LIBFTPRINTF) $(LIBGNL) $(LIBFT)
+		ar -x libftprintf.a
+		ar -x libgnl.a
+		ar -x libft.a
+		$(LIBC) $(NAME) *.o
 		$(LIBR) $(NAME)
 
 $(LIBFTPRINTF)	:
@@ -37,6 +40,7 @@ clean	:
 		$(MAKE) -C $(GNL) clean
 		$(MAKE) -C $(FT) clean
 		$(RM) libftprintf.a libgnl.a libft.a
+		$(RM) *.o
 		$(RM) $(LIBFTPRINTF) $(LIBGNL) $(LIBFT)
 
 fclean	: clean

@@ -25,7 +25,7 @@ OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJ_DIR) $(OBJ) $(INCLUDE)/ft_printf.h $(INCLUDE)/libft.h
-			$(LIBC) $(NAME) $(OBJS)
+			$(LIBC) $(NAME) $(OBJ)
 			$(LIBR) $(NAME)
 
 $(OBJ_DIR)	:
