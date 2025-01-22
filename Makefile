@@ -1,4 +1,4 @@
-.PHONY		: 	all clean fclean re
+.PHONY		: 	all clean fclean re FORCE
 
 NAME		=	libft_ex.a
 
@@ -26,14 +26,16 @@ $(NAME)	: $(LIBFTPRINTF) $(LIBGNL) $(LIBFT)
 		$(LIBC) $(NAME) *.o
 		$(LIBR) $(NAME)
 
-$(LIBFTPRINTF)	:
+$(LIBFTPRINTF)	:	FORCE
 		$(MAKE) -C $(FT_PRINTF)
 
-$(LIBGNL)	:
+$(LIBGNL)	:	FORCE
 		$(MAKE) -C $(GNL)
 
-$(LIBFT)	:
+$(LIBFT)	:	FORCE
 		$(MAKE) -C $(FT)
+
+FORCE	:
 
 clean	:
 		$(MAKE) -C $(FT_PRINTF) clean
