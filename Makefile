@@ -2,53 +2,56 @@
 
 NAME		=	libft_ex.a
 
+#			COMMON
+
+BUILD_DIR	=	.build/
 FT_PRINTF 	=	ft_printf/
 GNL 		=	get_next_line/
 FT 			=	libft/
+
+#			SRC
 
 LIBFTPRINTF =	$(FT_PRINTF)libftprintf.a
 LIBGNL		=	$(GNL)libgnl.a
 LIBFT		=	$(FT)libft.a
 
-RM			=	rm -rf
-LIBC		=	ar rc
-LIBR		= 	ranlib
+#			RULES
 
-all		: $(NAME)
+all				: $(NAME)
 
-$(NAME)	: $(LIBFTPRINTF) $(LIBGNL) $(LIBFT)
-		cp $(LIBFTPRINTF) .
-		cp $(LIBGNL) .
-		cp $(LIBFT) .
-		ar -x libftprintf.a
-		ar -x libgnl.a
-		ar -x libft.a
-		$(LIBC) $(NAME) *.o
-		$(LIBR) $(NAME)
+$(NAME)			: $(LIBFTPRINTF) $(LIBGNL) $(LIBFT) $(BUILD_DIR)
+				cp $(LIBFTPRINTF) $(BUILD_DIR)
+				cp $(LIBGNL) $(BUILD_DIR)
+				cp $(LIBFT) $(BUILD_DIR)
+				ar -x $(BUILD_DIR)libftprintf.a --output=$(BUILD_DIR)
+				ar -x $(BUILD_DIR)libgnl.a --output=$(BUILD_DIR)
+				ar -x $(BUILD_DIR)libft.a --output=$(BUILD_DIR)
+				ar -rcs $(NAME) $(BUILD_DIR)*.o
+
+$(BUILD_DIR)	:
+				mkdir -p $(BUILD_DIR)
 
 $(LIBFTPRINTF)	:	FORCE
-		$(MAKE) -C $(FT_PRINTF)
+				$(MAKE) -C $(FT_PRINTF)
 
-$(LIBGNL)	:	FORCE
-		$(MAKE) -C $(GNL)
+$(LIBGNL)		:	FORCE
+				$(MAKE) -C $(GNL)
 
-$(LIBFT)	:	FORCE
-		$(MAKE) -C $(FT)
+$(LIBFT)		:	FORCE
+				$(MAKE) -C $(FT)
 
-FORCE	:
+FORCE			:
 
-clean	:
-		$(MAKE) -C $(FT_PRINTF) clean
-		$(MAKE) -C $(GNL) clean
-		$(MAKE) -C $(FT) clean
-		$(RM) libftprintf.a libgnl.a libft.a
-		$(RM) *.o
-		$(RM) $(LIBFTPRINTF) $(LIBGNL) $(LIBFT)
+clean			:
+				$(MAKE) -C $(FT_PRINTF) clean
+				$(MAKE) -C $(GNL) clean
+				$(MAKE) -C $(FT) clean
+				rm -rf $(BUILD_DIR)
 
-fclean	: clean
-		$(MAKE) -C $(FT_PRINTF) fclean
-		$(MAKE) -C $(GNL) fclean
-		$(MAKE) -C $(FT) fclean
-		$(RM) $(NAME)
+fclean			: clean
+				$(MAKE) -C $(FT_PRINTF) fclean
+				$(MAKE) -C $(GNL) fclean
+				$(MAKE) -C $(FT) fclean
+				rm -f $(NAME)
 
-re		: fclean all
+re				: fclean all
