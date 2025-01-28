@@ -1,4 +1,4 @@
-.PHONY		: 	all clean fclean re FORCE
+.PHONY		: 	all clean fclean re FORCE norme
 
 NAME		=	libft_ex.a
 
@@ -41,6 +41,12 @@ $(LIBFT)		:	FORCE
 				$(MAKE) -C $(FT)
 
 FORCE			:
+
+norme			:
+				norminette includes
+				$(MAKE) -C $(FT_PRINTF) norme
+				$(MAKE) -C $(GNL) norme
+				$(MAKE) -C $(FT) norme
 
 clean			:
 				$(MAKE) -C $(FT_PRINTF) clean
