@@ -19,12 +19,12 @@ on:
   schedule:
     - cron: '45 13 * * 3'
 
-- name: Checkout repository
+name: Checkout repository
   uses: actions/checkout@v2
   with:
     submodules: true # Ensure submodules are checked out
 
-- name: Update submodules
+name: Update submodules
   run: git submodule update --init --recursive
 
 jobs:
