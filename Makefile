@@ -1,4 +1,4 @@
-.PHONY		: 	all clean fclean re FORCE norme
+.PHONY		: 	all clean fclean re FORCE norm
 
 NAME		=	libft_ex.a
 
@@ -7,22 +7,22 @@ NAME		=	libft_ex.a
 BUILD_DIR	=	.build/
 FT_PRINTF 	=	ft_printf/
 GNL 		=	get_next_line/
-FT 			=	libft/
+CORE 		=	core/
 
 #			SRC
 
 LIBFTPRINTF =	$(FT_PRINTF)libftprintf.a
 LIBGNL		=	$(GNL)libgnl.a
-LIBFT		=	$(FT)libft.a
+LIBFT_CORE	=	$(CORE)libft.a
 
 #			RULES
 
 all				: $(NAME)
 
-$(NAME)			: $(LIBFTPRINTF) $(LIBGNL) $(LIBFT) $(BUILD_DIR)
+$(NAME)			: $(LIBFTPRINTF) $(LIBGNL) $(LIBFT_CORE) $(BUILD_DIR)
 				cp $(LIBFTPRINTF) $(BUILD_DIR)
 				cp $(LIBGNL) $(BUILD_DIR)
-				cp $(LIBFT) $(BUILD_DIR)
+				cp $(LIBFT_CORE) $(BUILD_DIR)
 				ar -x $(BUILD_DIR)libftprintf.a --output=$(BUILD_DIR)
 				ar -x $(BUILD_DIR)libgnl.a --output=$(BUILD_DIR)
 				ar -x $(BUILD_DIR)libft.a --output=$(BUILD_DIR)
@@ -37,27 +37,27 @@ $(LIBFTPRINTF)	:	FORCE
 $(LIBGNL)		:	FORCE
 				$(MAKE) -C $(GNL)
 
-$(LIBFT)		:	FORCE
-				$(MAKE) -C $(FT)
+$(LIBFT_CORE)	:	FORCE
+				$(MAKE) -C $(CORE)
 
 FORCE			:
 
-norme			:
+norm			:
 				norminette include
-				$(MAKE) -C $(FT_PRINTF) norme
-				$(MAKE) -C $(GNL) norme
-				$(MAKE) -C $(FT) norme
+				$(MAKE) -C $(FT_PRINTF) norm
+				$(MAKE) -C $(GNL) norm
+				$(MAKE) -C $(CORE) norm
 
 clean			:
 				$(MAKE) -C $(FT_PRINTF) clean
 				$(MAKE) -C $(GNL) clean
-				$(MAKE) -C $(FT) clean
+				$(MAKE) -C $(CORE) clean
 				rm -rf $(BUILD_DIR)
 
 fclean			: clean
 				$(MAKE) -C $(FT_PRINTF) fclean
 				$(MAKE) -C $(GNL) fclean
-				$(MAKE) -C $(FT) fclean
+				$(MAKE) -C $(CORE) fclean
 				rm -f $(NAME)
 
 re				: fclean all
