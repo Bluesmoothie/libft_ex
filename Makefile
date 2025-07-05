@@ -1,6 +1,6 @@
 .PHONY		: 	all clean fclean re FORCE norm
 
-NAME		=	libft_ex.a
+NAME		=	libft_ex.so
 
 #			COMMON
 
@@ -26,7 +26,7 @@ $(NAME)			: $(LIBFTPRINTF) $(LIBGNL) $(LIBFT_CORE) $(BUILD_DIR)
 				ar -x $(BUILD_DIR)libftprintf.a --output=$(BUILD_DIR)
 				ar -x $(BUILD_DIR)libgnl.a --output=$(BUILD_DIR)
 				ar -x $(BUILD_DIR)libft.a --output=$(BUILD_DIR)
-				ar -rcs $(NAME) $(BUILD_DIR)*.o
+				$(CC) -shared -o $(NAME) $(BUILD_DIR)*.o
 
 $(BUILD_DIR)	:
 				mkdir -p $(BUILD_DIR)
